@@ -4,581 +4,300 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Explore Mongolia</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      color: #1f2937;
-      background: #ffffff;
-    }
-    a { text-decoration: none; color: inherit; }
-    img { width: 100%; display: block; }
-    .container { width: min(1200px, 92%); margin: 0 auto; }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255,255,255,0.96);
-      border-bottom: 1px solid #e5e7eb;
-      backdrop-filter: blur(8px);
-    }
-    .header-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 16px 0;
-    }
-    .logo {
-      font-size: 28px;
-      font-weight: 800;
-      color: #0f172a;
-    }
-    nav {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      font-size: 14px;
-      color: #334155;
-    }
-    .lang-switch {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-    .lang-switch a {
-      border: 1px solid #cbd5e1;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .hero {
-      position: relative;
-      min-height: 85vh;
-      background: linear-gradient(rgba(15,23,42,0.45), rgba(15,23,42,0.45)), url('images/hero-main.jpg') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      color: white;
-    }
-    .hero-content {
-      max-width: 760px;
-      padding: 80px 0;
-    }
-    .hero-content h1 {
-      font-size: clamp(40px, 6vw, 74px);
-      line-height: 1.05;
-      margin-bottom: 18px;
-      font-weight: 800;
-    }
-    .hero-content p {
-      font-size: 18px;
-      max-width: 620px;
-      color: #e2e8f0;
-      margin-bottom: 28px;
-    }
-    .hero-buttons {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-    .btn {
-      display: inline-block;
-      padding: 14px 22px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 14px;
-    }
-    .btn-primary {
-      background: #16a34a;
-      color: white;
-    }
-    .btn-secondary {
-      background: white;
-      color: #0f172a;
-    }
-
-    section { padding: 80px 0; }
-    .section-title {
-      text-align: center;
-      margin-bottom: 18px;
-      font-size: 38px;
-      font-weight: 800;
-      color: #0f172a;
-    }
-    .section-subtitle {
-      text-align: center;
-      max-width: 760px;
-      margin: 0 auto 44px;
-      color: #64748b;
-    }
-
-    .about-grid,
-    .card-grid,
-    .tour-grid,
-    .guide-grid,
-    .footer-grid {
-      display: grid;
-      gap: 24px;
-    }
-    .about-grid { grid-template-columns: 1.1fr 0.9fr; align-items: center; }
-    .card-grid { grid-template-columns: repeat(3, 1fr); }
-    .tour-grid { grid-template-columns: repeat(4, 1fr); }
-    .guide-grid { grid-template-columns: repeat(3, 1fr); }
-    .footer-grid { grid-template-columns: 1.2fr 1fr 1fr 1fr; }
-
-    .about-image img,
-    .destination-card img,
-    .ub-card img,
-    .gallery-grid img {
-      border-radius: 22px;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .about-text h2,
-    .booking-box h2 {
-      font-size: 34px;
-      margin-bottom: 14px;
-      color: #0f172a;
-    }
-    .about-text p,
-    .booking-box p {
-      color: #475569;
-      margin-bottom: 16px;
-    }
-
-    .destination-card,
-    .tour-card,
-    .guide-card,
-    .ub-card,
-    .info-card {
-      background: #fff;
-      border: 1px solid #e5e7eb;
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.04);
-    }
-    .destination-card-content,
-    .tour-card-content,
-    .guide-card-content,
-    .ub-card-content,
-    .info-card-content {
-      padding: 20px;
-    }
-    .destination-card h3,
-    .tour-card h3,
-    .guide-card h3,
-    .ub-card h3,
-    .info-card h3 {
-      font-size: 22px;
-      margin-bottom: 10px;
-      color: #0f172a;
-    }
-    .destination-card p,
-    .tour-card p,
-    .guide-card p,
-    .ub-card p,
-    .info-card p {
-      color: #64748b;
-      font-size: 15px;
-    }
-    .tag {
-      display: inline-block;
-      margin-bottom: 10px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: #f1f5f9;
-      color: #334155;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .video-section {
-      background: #0f172a;
-      color: white;
-    }
-    .video-section .section-title,
-    .video-section .section-subtitle { color: white; }
-    .video-box {
-      max-width: 900px;
-      margin: 0 auto;
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.14);
-    }
-    video { width: 100%; background: black; }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-    .gallery-grid img { height: 260px; }
-
-    .booking-section {
-      background: #f8fafc;
-    }
-    .booking-wrap {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      align-items: stretch;
-    }
-    .booking-box,
-    .booking-form {
-      background: white;
-      border: 1px solid #e5e7eb;
-      border-radius: 28px;
-      padding: 28px;
-    }
-    .booking-form form {
-      display: grid;
-      gap: 14px;
-    }
-    .booking-form input,
-    .booking-form select,
-    .booking-form textarea {
-      width: 100%;
-      padding: 14px 16px;
-      border: 1px solid #cbd5e1;
-      border-radius: 14px;
-      font-size: 15px;
-    }
-    .booking-form textarea { min-height: 130px; resize: vertical; }
-    .booking-form button {
-      padding: 14px 20px;
-      border: none;
-      border-radius: 14px;
-      background: #0f172a;
-      color: white;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .policy-section {
-      background: #fff;
-    }
-    .policy-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    footer {
-      background: #0f172a;
-      color: #cbd5e1;
-      padding: 70px 0 30px;
-    }
-    footer h4 {
-      color: white;
-      margin-bottom: 14px;
-      font-size: 18px;
-    }
-    footer p, footer li, footer a {
-      font-size: 14px;
-      color: #cbd5e1;
-      margin-bottom: 10px;
-      list-style: none;
-    }
-    .footer-bottom {
-      margin-top: 30px;
-      border-top: 1px solid rgba(255,255,255,0.12);
-      padding-top: 20px;
-      text-align: center;
-      font-size: 13px;
-    }
-
-    @media (max-width: 1024px) {
-      .card-grid,
-      .tour-grid,
-      .guide-grid,
-      .policy-grid,
-      .gallery-grid,
-      .footer-grid,
-      .booking-wrap,
-      .about-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-      .header-wrap {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .card-grid,
-      .tour-grid,
-      .guide-grid,
-      .policy-grid,
-      .gallery-grid,
-      .footer-grid,
-      .booking-wrap,
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-      nav {
-        gap: 12px;
-      }
-      .hero {
-        min-height: 72vh;
-      }
-      .section-title {
-        font-size: 30px;
-      }
-      .about-text h2,
-      .booking-box h2 {
-        font-size: 28px;
-      }
-    }
-  </style>
+  <meta name="description" content="Explore Mongolia - destinations, tours, culture, booking, and travel guides." />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
+
+  <header class="site-header">
     <div class="container header-wrap">
-      <div class="logo">Explore Mongolia</div>
-      <nav>
+      <a href="#" class="logo">Explore Mongolia</a>
+
+      <nav class="main-nav">
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#destinations">Destinations</a>
         <a href="#guide">Guide</a>
         <a href="#tours">Tours</a>
-        <a href="#ulaanbaatar">Ulaanbaatar</a>
-        <a href="#gallery">Gallery</a>
         <a href="#booking">Booking</a>
       </nav>
+
       <div class="lang-switch">
-        <a href="/en/">EN</a>
-        <a href="/jp/">JP</a>
-        <a href="/kr/">KR</a>
+        <a href="#">EN</a>
+        <a href="#">JP</a>
+        <a href="#">KR</a>
       </div>
     </div>
   </header>
 
   <section class="hero" id="home">
+    <div class="hero-slider">
+      <img src="images/hero1.jpg" class="slide active" alt="Mongolia landscape 1" />
+      <img src="images/hero2.jpg" class="slide" alt="Mongolia landscape 2" />
+      <img src="images/hero3.jpg" class="slide" alt="Mongolia landscape 3" />
+      <img src="images/hero4.jpg" class="slide" alt="Mongolia landscape 4" />
+    </div>
+
+    <div class="hero-overlay"></div>
+
     <div class="container hero-content">
-      <h1>Discover the Land of Nomads</h1>
-      <p>Explore Mongolia through authentic tours, destination guides, cultural experiences, modern Ulaanbaatar, and unforgettable travel routes.</p>
+      <span class="hero-badge">Land of Nomads</span>
+      <h1>Discover the Spirit of Mongolia</h1>
+      <p>
+        Journey through vast steppes, dramatic deserts, crystal lakes, and living nomadic culture.
+        Explore destinations, tours, travel guides, and unforgettable experiences in Mongolia.
+      </p>
+
       <div class="hero-buttons">
-        <a class="btn btn-primary" href="#booking">Book Your Trip</a>
-        <a class="btn btn-secondary" href="#destinations">Explore Destinations</a>
+        <a href="#booking" class="btn btn-primary">Book Your Journey</a>
+        <a href="#destinations" class="btn btn-secondary">Explore Destinations</a>
       </div>
     </div>
   </section>
 
-  <section id="about">
+  <section class="about section" id="about">
     <div class="container about-grid">
       <div class="about-text">
-        <h2>About Explore Mongolia</h2>
-        <p>Explore Mongolia is a travel website created to introduce Mongolia to international visitors through destinations, tours, culture, and practical travel information.</p>
-        <p>The website can include province guides, history, customs, monasteries, traditional food, transport, modern Mongolian culture, and travel booking inquiry sections.</p>
-        <a class="btn btn-primary" href="#guide">Read Travel Guide</a>
+        <p class="section-kicker">About Mongolia</p>
+        <h2>Authentic journeys across timeless landscapes</h2>
+        <p>
+          Explore Mongolia is a travel platform designed to introduce international visitors to the
+          beauty, culture, history, and modern life of Mongolia.
+        </p>
+        <p>
+          From the Gobi Desert to Khuvsgul Lake, from nomadic traditions to Ulaanbaatar city life,
+          this website can grow into a complete Mongolia travel guide and booking platform.
+        </p>
+        <a href="#guide" class="text-link">Read the travel guide →</a>
       </div>
+
       <div class="about-image">
-        <img src="images/hero-city.jpg" alt="About Mongolia" />
+        <img src="images/about-mongolia.jpg" alt="About Mongolia" />
       </div>
     </div>
   </section>
 
-  <section id="destinations">
+  <section class="destinations section" id="destinations">
     <div class="container">
-      <h2 class="section-title">Top Destinations</h2>
-      <p class="section-subtitle">Start with the most iconic places in Mongolia, then later you can expand this section into all 18 aimags with separate destination pages and travel information.</p>
-      <div class="card-grid">
-        <div class="destination-card">
+      <p class="section-kicker center">Destinations</p>
+      <h2 class="section-title center">Top Places to Visit</h2>
+      <p class="section-desc center">
+        Start with these iconic destinations, then later you can expand into 18 aimag pages.
+      </p>
+
+      <div class="card-grid three">
+        <article class="card destination-card">
           <img src="images/gobi.jpg" alt="Gobi Desert" />
-          <div class="destination-card-content">
-            <span class="tag">Desert Adventure</span>
+          <div class="card-body">
+            <span class="card-tag">Desert Adventure</span>
             <h3>Gobi Desert</h3>
-            <p>Sand dunes, flaming cliffs, camel riding, and dramatic desert landscapes.</p>
+            <p>Sand dunes, flaming cliffs, camel trekking, and stunning desert horizons.</p>
           </div>
-        </div>
-        <div class="destination-card">
+        </article>
+
+        <article class="card destination-card">
           <img src="images/khuvsgul.jpg" alt="Khuvsgul Lake" />
-          <div class="destination-card-content">
-            <span class="tag">Northern Nature</span>
+          <div class="card-body">
+            <span class="card-tag">Northern Mongolia</span>
             <h3>Khuvsgul Lake</h3>
-            <p>Crystal clear lake, taiga forest, reindeer culture, and peaceful northern scenery.</p>
+            <p>Blue waters, pine forests, peaceful camps, and rich local culture.</p>
           </div>
-        </div>
-        <div class="destination-card">
+        </article>
+
+        <article class="card destination-card">
           <img src="images/altai.jpg" alt="Altai Mountains" />
-          <div class="destination-card-content">
-            <span class="tag">Western Mongolia</span>
+          <div class="card-body">
+            <span class="card-tag">Western Mongolia</span>
             <h3>Altai Mountains</h3>
-            <p>Eagle hunters, glaciers, mountains, and one of the most unique regions in Mongolia.</p>
+            <p>Epic landscapes, eagle hunters, glaciers, and unforgettable mountain scenery.</p>
           </div>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section id="guide" style="background:#f8fafc;">
+  <section class="guide section" id="guide">
     <div class="container">
-      <h2 class="section-title">Mongolia Travel Guide</h2>
-      <p class="section-subtitle">This section can grow into many detailed pages for foreign travelers.</p>
-      <div class="guide-grid">
-        <div class="guide-card"><div class="guide-card-content"><h3>History & Culture</h3><p>Chinggis Khan, Mongol Empire, nomadic traditions, and modern identity.</p></div></div>
-        <div class="guide-card"><div class="guide-card-content"><h3>Food & Ger</h3><p>Buuz, khuushuur, khorkhog, dairy culture, and staying in a Mongolian ger.</p></div></div>
-        <div class="guide-card"><div class="guide-card-content"><h3>Weather & Money</h3><p>Seasons, what to pack, local currency, exchange, and practical travel advice.</p></div></div>
-        <div class="guide-card"><div class="guide-card-content"><h3>Transport</h3><p>Flights, road trips, 4x4 vehicles, countryside travel, and city transportation.</p></div></div>
-        <div class="guide-card"><div class="guide-card-content"><h3>Temples & Monasteries</h3><p>Gandan, Amarbayasgalant, Erdene Zuu, and Buddhist heritage in Mongolia.</p></div></div>
-        <div class="guide-card"><div class="guide-card-content"><h3>Modern Mongolia</h3><p>Internet, music, city life, culture, and the changing face of Ulaanbaatar.</p></div></div>
-      </div>
-    </div>
-  </section>
+      <p class="section-kicker center">Travel Guide</p>
+      <h2 class="section-title center">Everything Visitors Need to Know</h2>
+      <p class="section-desc center">
+        Culture, food, transport, monasteries, ger life, weather, money, and modern Mongolia.
+      </p>
 
-  <section id="tours">
-    <div class="container">
-      <h2 class="section-title">Popular Tours</h2>
-      <p class="section-subtitle">Later you can expand this into 20 itinerary pages with full day-by-day routes.</p>
-      <div class="tour-grid">
-        <div class="tour-card"><div class="tour-card-content"><span class="tag">7 Days</span><h3>Classic Mongolia</h3><p>Ulaanbaatar, Terelj, Kharkhorin, nomad family experience.</p></div></div>
-        <div class="tour-card"><div class="tour-card-content"><span class="tag">10 Days</span><h3>Gobi Adventure</h3><p>Yol Valley, Khongor dunes, Bayanzag, and desert highlights.</p></div></div>
-        <div class="tour-card"><div class="tour-card-content"><span class="tag">8 Days</span><h3>Khuvsgul Explorer</h3><p>Northern Mongolia route with lake, forest, and reindeer culture.</p></div></div>
-        <div class="tour-card"><div class="tour-card-content"><span class="tag">Festival</span><h3>Naadam Experience</h3><p>Traditional wrestling, horse racing, archery, and local celebrations.</p></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="ulaanbaatar">
-    <div class="container">
-      <h2 class="section-title">Modern Ulaanbaatar</h2>
-      <p class="section-subtitle">A useful city guide for tourists who want both traditional and modern experiences.</p>
-      <div class="card-grid">
-        <div class="ub-card">
-          <img src="images/ub-square.jpg" alt="Chinggis Square" />
-          <div class="ub-card-content">
-            <h3>Landmarks & Museums</h3>
-            <p>Chinggis Khan Square, Chinggis Khan Museum, National Museum, Gandan Monastery, Bogd Khan Palace.</p>
+      <div class="card-grid three small-cards">
+        <article class="card info-card">
+          <div class="card-body">
+            <h3>History & Culture</h3>
+            <p>Chinggis Khan, nomadic heritage, traditions, and the Mongolian way of life.</p>
           </div>
-        </div>
-        <div class="ub-card">
-          <img src="images/ub-culture.jpg" alt="Ulaanbaatar Culture" />
-          <div class="ub-card-content">
-            <h3>Culture & Performances</h3>
-            <p>State Academic Drama Theatre, opera, traditional performances, modern music and dance groups, Ara Complex.</p>
+        </article>
+
+        <article class="card info-card">
+          <div class="card-body">
+            <h3>Food & Ger Life</h3>
+            <p>Traditional dishes, dairy culture, and the unique experience of staying in a ger.</p>
           </div>
-        </div>
-        <div class="ub-card">
-          <img src="images/ub-life.jpg" alt="Ulaanbaatar Lifestyle" />
-          <div class="ub-card-content">
-            <h3>City Life</h3>
-            <p>Restaurants, shopping, nightlife, modern cafes, city tours, and practical things to do in Ulaanbaatar.</p>
+        </article>
+
+        <article class="card info-card">
+          <div class="card-body">
+            <h3>Transport & Weather</h3>
+            <p>Best season to visit, what to pack, city travel, countryside roads, and flights.</p>
           </div>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="video-section">
+  <section class="feature-banner section">
+    <div class="container feature-grid">
+      <div class="feature-image">
+        <img src="images/culture.jpg" alt="Mongolian culture" />
+      </div>
+      <div class="feature-text">
+        <p class="section-kicker">Culture & City Life</p>
+        <h2>From nomadic heritage to modern Ulaanbaatar</h2>
+        <p>
+          Your homepage can later feature Gandan Monastery, Chinggis Khan Museum, theatre,
+          music, dance, restaurants, shopping, and modern city experiences.
+        </p>
+        <a href="#tours" class="btn btn-primary">View Tours</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="tours section" id="tours">
     <div class="container">
-      <h2 class="section-title">Mongolia Travel Video</h2>
-      <p class="section-subtitle">You can replace this with your own promo video later.</p>
-      <div class="video-box">
-        <video controls>
-          <source src="video/mongolia.mp4" type="video/mp4" />
-        </video>
+      <p class="section-kicker center">Tours</p>
+      <h2 class="section-title center">Popular Travel Experiences</h2>
+      <p class="section-desc center">
+        These can later become full itinerary pages with detailed route information.
+      </p>
+
+      <div class="card-grid three">
+        <article class="card tour-card">
+          <img src="images/tour.jpg" alt="Classic Mongolia Tour" />
+          <div class="card-body">
+            <span class="card-tag">7 Days</span>
+            <h3>Classic Mongolia</h3>
+            <p>Ulaanbaatar, Terelj, Kharkhorin, and nomadic family experience.</p>
+          </div>
+        </article>
+
+        <article class="card tour-card">
+          <img src="images/ub.jpg" alt="Ulaanbaatar City Tour" />
+          <div class="card-body">
+            <span class="card-tag">City Experience</span>
+            <h3>Ulaanbaatar Highlights</h3>
+            <p>Museums, monasteries, central square, local food, and modern culture.</p>
+          </div>
+        </article>
+
+        <article class="card tour-card">
+          <img src="images/gobi.jpg" alt="Gobi Adventure" />
+          <div class="card-body">
+            <span class="card-tag">Adventure</span>
+            <h3>Gobi Adventure</h3>
+            <p>Yol Valley, Khongor dunes, flaming cliffs, and dramatic desert views.</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section id="gallery">
-    <div class="container">
-      <h2 class="section-title">Photo Gallery</h2>
-      <p class="section-subtitle">Add your own destination photos with the same file names or rename them in code.</p>
-      <div class="gallery-grid">
-        <img src="images/gallery-1.jpg" alt="Gallery 1" />
-        <img src="images/gallery-2.jpg" alt="Gallery 2" />
-        <img src="images/gallery-3.jpg" alt="Gallery 3" />
-        <img src="images/gallery-4.jpg" alt="Gallery 4" />
-      </div>
-    </div>
-  </section>
-
-  <section class="booking-section" id="booking">
+  <section class="booking section" id="booking">
     <div class="container booking-wrap">
-      <div class="booking-box">
-        <h2>Booking & Inquiry</h2>
-        <p>This section is for tour booking, private trip inquiry, travel plan requests, airport pickup, guide booking, or custom route planning.</p>
-        <p>You can later connect this form to email, WhatsApp, Google Sheets, Netlify Forms, or your own backend.</p>
-        <div class="info-card" style="margin-top:18px;">
-          <div class="info-card-content">
-            <h3>Suggested Booking Options</h3>
-            <p>Private tour, group tour, city tour, guide service, airport transfer, custom itinerary, ger camp booking.</p>
-          </div>
-        </div>
+      <div class="booking-text">
+        <p class="section-kicker">Booking</p>
+        <h2>Plan your Mongolia trip with us</h2>
+        <p>
+          This section can be connected later to WhatsApp, email, Google Sheets, Netlify Forms,
+          or your own backend system.
+        </p>
+        <ul class="booking-list">
+          <li>Private tours</li>
+          <li>Group tours</li>
+          <li>Custom itineraries</li>
+          <li>Airport pickup</li>
+          <li>Guide service</li>
+        </ul>
       </div>
-      <div class="booking-form">
-        <form>
+
+      <div class="booking-form-box">
+        <form class="booking-form">
           <input type="text" placeholder="Full Name" />
           <input type="email" placeholder="Email Address" />
-          <input type="text" placeholder="WhatsApp / Phone" />
+          <input type="text" placeholder="Phone / WhatsApp" />
           <select>
-            <option>Select service</option>
+            <option>Select Service</option>
             <option>Private Tour</option>
             <option>Group Tour</option>
-            <option>City Tour</option>
-            <option>Airport Pickup</option>
             <option>Guide Booking</option>
+            <option>Airport Pickup</option>
             <option>Custom Itinerary</option>
           </select>
           <textarea placeholder="Tell us your travel dates, group size, and destinations..."></textarea>
-          <button type="submit">Send Booking Request</button>
+          <button type="submit" class="btn btn-dark">Send Inquiry</button>
         </form>
       </div>
     </div>
   </section>
 
-  <section class="policy-section">
-    <div class="container">
-      <h2 class="section-title">Important Information</h2>
-      <p class="section-subtitle">These are the pages commonly linked in the footer of a travel website.</p>
-      <div class="policy-grid">
-        <div class="info-card"><div class="info-card-content"><h3>About Us</h3><p>Company introduction, mission, service style, and who you are.</p></div></div>
-        <div class="info-card"><div class="info-card-content"><h3>Privacy Policy</h3><p>How booking inquiries, email addresses, and traveler information are handled.</p></div></div>
-        <div class="info-card"><div class="info-card-content"><h3>Terms & Conditions</h3><p>Booking terms, cancellation policy, payment rules, and responsibilities.</p></div></div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
+  <footer class="site-footer">
     <div class="container footer-grid">
       <div>
-        <h4>Explore Mongolia</h4>
-        <p>Travel guide, destination information, tours, booking inquiry, and modern Mongolia content for international visitors.</p>
+        <h3>Explore Mongolia</h3>
+        <p>
+          A travel website for discovering Mongolia through destinations, culture, tours, and travel planning.
+        </p>
       </div>
+
       <div>
         <h4>Menu</h4>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#destinations">Destinations</a></li>
-          <li><a href="#guide">Guide</a></li>
-          <li><a href="#tours">Tours</a></li>
-        </ul>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#destinations">Destinations</a>
+        <a href="#tours">Tours</a>
       </div>
+
       <div>
-        <h4>Pages</h4>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#booking">Booking</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms & Conditions</a></li>
-        </ul>
+        <h4>Information</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#booking">Booking</a>
+        <a href="#">Contact</a>
       </div>
+
       <div>
         <h4>Contact</h4>
-        <p>Email: info@exploremongolia.com</p>
-        <p>WhatsApp: +976 90283039</p>
         <p>Ulaanbaatar, Mongolia</p>
+        <p>info@exploremongolia.com</p>
+        <p>+976 90283039</p>
       </div>
     </div>
+
     <div class="container footer-bottom">
-      © 2026 Explore Mongolia. All rights reserved.
+      <p>© 2026 Explore Mongolia. All rights reserved.</p>
     </div>
   </footer>
+
+  <script>
+    const slides = document.querySelectorAll(".slide");
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      slides.forEach((slide) => slide.classList.remove("active"));
+      slides[index].classList.add("active");
+    }
+
+    setInterval(() => {
+      currentSlide++;
+      if (currentSlide >= slides.length) {
+        currentSlide = 0;
+      }
+      showSlide(currentSlide);
+    }, 4000);
+  </script>
+
 </body>
 </html>
